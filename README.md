@@ -3,6 +3,8 @@
 A tutorial which is based on AWS Serverless Application Model (SAM).
 In this stage, we'll create the most basic of lambda functions, using the SAM template.
 As per the screenshot below, this will consist of a lambda function, together with an S3 bucket that stores the lambda code.
+
+
 ![Alt text](documentation/stage1.png?raw=true "Stage 1")
 
 ## template.yaml     
