@@ -4,7 +4,8 @@ A tutorial which is based on AWS Serverless Application Model (SAM).
 In this stage, we'll create the most basic of lambda functions, using the SAM template.
 
 
-## template.yaml     SAM CloudFormation Template 
+## template.yaml     
+###SAM CloudFormation Template 
 
 The SAM (Serverless Application Model) provides a series of extentions to the CloudFormation template that dramatically simply the setup of a Serverless stack (API Gateway / Lambda / Dynamo etc).
 
@@ -99,7 +100,8 @@ For the lambda to run, it will need to be given one or more roles. At this stage
 the basic execution role. Later, as we start to expand the functionality of our lamda, we will add additional roles (eg: access to dynamodb)
 
 
-## myCode/index.js    our lambda function
+## myCode/index.js    
+###Our lambda function
 Create a file called index.js in a subdirectory called myCode. This file will hold our nodejs lambda code.
 
 Here is the full file:
@@ -116,7 +118,8 @@ exports.handler = function(event, context, callback) {
 
 This is relatively simple. The 'use strict' ensures that our code is run in strict mode, good programming practice for javascript. We tgen export a function called handler (note this matches the index.handler definition earlier in the template.yaml file). That function generates a response json object and invokes the supplied callback to return this.
 
-## publish.sh    Shell script to package and deploy our serverless application
+## publish.sh    
+###Shell script to package and deploy our serverless application
 Create a file called publish.sh. Here is the full file we'll use for this stage:
 ```
 #!/bin/bash
@@ -192,6 +195,8 @@ This step calls the AWS CLI to deploy the project using cloudformation.
 
 ## Putting it all together
 ![Alt text](documentation/screenshot0.png?raw=true "Screenshot 0")
+![Alt text](documentation/screenshot1.png?raw=true "Screenshot 1")
+![Alt text](documentation/screenshot2.png?raw=true "Screenshot 2")
 ![Alt text](documentation/screenshot4.png?raw=true "Screenshot 4")
 
 
