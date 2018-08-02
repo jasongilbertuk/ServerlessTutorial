@@ -194,9 +194,18 @@ aws cloudformation deploy                     \
 This step calls the AWS CLI to deploy the project using cloudformation.
 
 ## Putting it all together
+If you have not already done so, first make this file executable by running the command chmod +x publish.sh 
+Now run the publish.sh shell script. If all correct, this should package and deploy your lambda.
 ![Alt text](documentation/screenshot0.png?raw=true "Screenshot 0")
+
+In the AWS console, go to CloudFormation and check that your stack deployed successfully.
 ![Alt text](documentation/screenshot1.png?raw=true "Screenshot 1")
+
+In the AWS console, go to Lambda and examine the myFirstLambda function deployed.
 ![Alt text](documentation/screenshot2.png?raw=true "Screenshot 2")
+
+
+In the AWS console,run a test on the Lambda, and ensure that it executes and returns the result expected.
 ![Alt text](documentation/screenshot4.png?raw=true "Screenshot 4")
 
 
