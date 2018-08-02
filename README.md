@@ -9,8 +9,6 @@ Start with the first TAG (0). Then `Checkout` the next TAG when you're ready to 
 The following pre-requisite steps are required on your local machine prior to commencing these tutorials. These instructions are for the Mac. If you are on a Windows PC, sorry to hear it. Options are to buy a Mac (you won't regret it) or to find out for yourself how to setup your machine.
 
 ### Installing Homebrew
-These instructions are for the Mac. If you are on a Windows PC, sorry to hear it. Options are to buy a 
-Install **Homebrew**
 Homebrew is a free and open-source software package management system that simplifies the installation of software on Apple's macOS operating system.
 
 ```
