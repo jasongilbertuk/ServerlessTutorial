@@ -4,13 +4,13 @@ A tutorial which is based on AWS Serverless Application Model (SAM).
 In this stage, we'll create the most basic of lambda functions, using the SAM template.
 
 
-## SAM CloudFormation Template
+## template.yaml     SAM CloudFormation Template 
 
 The SAM (Serverless Application Model) provides a series of extentions to the CloudFormation template that dramatically simply the setup of a Serverless stack (API Gateway / Lambda / Dynamo etc).
 
 We will use yaml and start by defining a basic SAM template that creates a basic Lambda.
 
-Here is the full template.yaml we'll use for this stage:
+Create a file called template.yaml. Here is the full file we'll use for this stage:
 ```
 AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
@@ -19,7 +19,7 @@ Resources:
   MyFirstLambda:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: HelloLambda
+      FunctionName: MyFirstLambda
       Handler: index.handler
       Runtime: nodejs6.10
       CodeUri: myCode 
@@ -97,6 +97,23 @@ Maximum time (in seconds) which the lambda function can run for.
 ```
 For the lambda to run, it will need to be given one or more roles. At this stage, we will just give it
 the basic execution role. Later, as we start to expand the functionality of our lamda, we will add additional roles (eg: access to dynamodb)
+
+
+## myCode/index.js    our lambda function
+Create a file called index.js in a subdirectory called myCode. This file will hold our nodejs lambda code.
+
+Here is the full file:
+```
+'use strict';
+
+exports.handler = function(event, context, callback) {
+    const response = { 'statusCode': 200, 
+                       'headers': {'Content-Type': 'application/json'},
+                       'body': { 'message' : 'hello world' }};
+    callback(null, response);
+}
+```
+![Alt text](documentation/screenshot1.png?raw=true "Screenshot 1")
 
 
 ## Next step
