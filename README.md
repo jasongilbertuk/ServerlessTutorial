@@ -113,7 +113,86 @@ exports.handler = function(event, context, callback) {
     callback(null, response);
 }
 ```
-![Alt text](documentation/screenshot1.png?raw=true "Screenshot 1")
+
+This is relatively simple. The 'use strict' ensures that our code is run in strict mode, good programming practice for javascript. We tgen export a function called handler (note this matches the index.handler definition earlier in the template.yaml file). That function generates a response json object and invokes the supplied callback to return this.
+
+## publish.sh    Shell script to package and deploy our serverless application
+Create a file called publish.sh. Here is the full file we'll use for this stage:
+```
+#!/bin/bash
+
+# project and associated bucket name
+PROJECT_NAME=serverless-tutorial
+BUCKET_NAME=$PROJECT_NAME-20180802
+
+# create a local build directory
+rm -rf build
+mkdir build
+
+# create the bucket
+aws s3 mb s3://$BUCKET_NAME 
+
+# create the package
+aws cloudformation package                   \
+    --template-file template.yaml            \
+    --output-template-file build/output.yaml \
+    --s3-bucket $BUCKET_NAME                      
+
+# deploy the package
+aws cloudformation deploy                     \
+    --template-file build/output.yaml         \
+    --stack-name $PROJECT_NAME                \
+    --capabilities CAPABILITY_IAM             
+
+```
+Let's disect it a line at a time:
+
+```
+#!/bin/bash
+```
+Shell script 101. If you don't know what this is, google it.
+
+```
+# project and associated bucket name
+PROJECT_NAME=serverless-tutorial
+BUCKET_NAME=$PROJECT_NAME-20180802
+```
+Two variables define. The first is a name for our project, the second is the name we wish to use for our S3 bucket, which is the project name suffixed with a unique identfiier (in this case I've used todays date). Two key points to note: (1) everything should be in lowercase, as s3 buckets do not support uppercase and (2) name of bucket should be unique (IE: If you try to use exact name as specified, this will fail as the bucket nameed serverless-tutorial-20180802 belongs to my AWS account)
+
+```
+# create a local build directory
+rm -rf build
+mkdir build
+```
+We are going to use a temp directory to hold our build files. The above steps empty / remove this directory if it exists, then creates the directory afresh.
+
+```
+# create the bucket
+aws s3 mb s3://$BUCKET_NAME 
+```
+This step calls the AWS CLI to create the S3 bucket. If the bucket name already exists, this step will fail, but the script will continue.
+
+```
+# create the package
+aws cloudformation package                   \
+    --template-file template.yaml            \
+    --output-template-file build/output.yaml \
+    --s3-bucket $BUCKET_NAME                 
+```
+This step uses the information held in the template.yaml file to package up and upload the application to AWS. This includes the uploading of the Lambda code to the s3 bucket specified (as a zipped file) and creates a copy of the template.yaml file, called output.yaml, where the code uri has been altered to point to this zipped up file in the S3 bucket.
+
+
+```
+aws cloudformation deploy                     \
+    --template-file build/output.yaml         \
+    --stack-name $PROJECT_NAME                \
+    --capabilities CAPABILITY_IAM                     
+```
+This step calls the AWS CLI to deploy the project using cloudformation.
+
+## Putting it all together
+![Alt text](documentation/screenshot0.png?raw=true "Screenshot 0")
+![Alt text](documentation/screenshot4.png?raw=true "Screenshot 4")
 
 
 ## Next step
