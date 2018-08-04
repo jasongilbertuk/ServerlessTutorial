@@ -44,5 +44,4 @@ Default output format [None]: json
 ```
 
 ## Next step
-
-`Checkout` the next tag (1) when you have completed the above steps..
+[Proceed to next step](https://github.com/jasongilbertuk/ServerlessTutorial/tree/1)
