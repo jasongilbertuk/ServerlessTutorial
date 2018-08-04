@@ -219,5 +219,5 @@ In the AWS console,run a test on the Lambda, and ensure that it executes and ret
 
 
 ## Next step
-
+[I'm a relative reference to a repository file](../0 "Previous Step")
 `Checkout` the next tag to continue.
