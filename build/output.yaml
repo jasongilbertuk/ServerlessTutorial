@@ -3,7 +3,13 @@ Description: AWS Serverless Tutorial
 Resources:
   MyFirstLambda:
     Properties:
-      CodeUri: s3://serverless-tutorial-20180802/3291e8f223447d59494722e68f714d6f
+      CodeUri: s3://serverless-tutorial-20180802/830436d487251104d9a76248268b156f
+      Events:
+        MyFirstEndpoint:
+          Properties:
+            Method: get
+            Path: /demo
+          Type: Api
       FunctionName: MyFirstLambda
       Handler: index.handler
       MemorySize: 128
